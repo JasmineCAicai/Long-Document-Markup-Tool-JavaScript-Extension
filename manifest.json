@@ -2,7 +2,7 @@
     "name": "My Extension",
     "version": "0.1.0",
     "manifest_version": 2,
-    "description": "This is for changing style",
+    "description": "This is for adding mark/note",
     "icons": { "16": "icon48.png",
                "48": "icon48.png"},
 
@@ -10,8 +10,13 @@
         "default_icon": "icon48.png",
         "default_popup": "popup.html",
         "default_title": "click it ~"},
-    "background": { "scripts": ["popup.js"]},
+    
     "background_page": "popup.html",
-    "permissions": [ "tab", 
-                     "contextMenus"]
+    "content_scripts": [
+        {
+            "matches": ["https://*/*", "http://*/*"],
+            "css": ["notestyles.css"],
+            "js": ["showMark.js"]
+        }
+    ]
 }
