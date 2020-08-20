@@ -2,16 +2,19 @@
     "name": "My Extension",
     "version": "0.1.0",
     "manifest_version": 2,
-    "description": "This is for adding mark/note",
-    "icons": { "16": "icon48.png",
+    "description": "This is for adding label.",
+    "icons": { "16": "icon16.png",
                "48": "icon48.png"},
 
     "browser_action": {
         "default_icon": "icon48.png",
         "default_popup": "popup.html",
-        "default_title": "click it ~"},
+        "default_title": "Click it to see the brief introduction."},
     
-    "background_page": "popup.html",
+    "background": {
+        "page": "popup.html"
+    },
+    
     "content_scripts": [
         {
             "matches": ["https://*/*", "http://*/*"],
