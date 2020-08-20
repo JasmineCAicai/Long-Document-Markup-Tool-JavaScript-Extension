@@ -1,6 +1,5 @@
 let box = document.createElement("div");
 box.className = "inline";
-// box.id = "contain";
 document.body.append(box);
 
 let coords_map = new Map();
@@ -19,6 +18,7 @@ let color = [
 ]
 let i = 0;
 let j = 0;
+let count = 0;
 
 // Label ID
 let labelId = 1;
@@ -29,8 +29,16 @@ let clicked = false;
 let text = null;
 
 document.onclick = function(e) { // shows click coordinates
-  if(clicked === false){
-    text = prompt("输入标签文字：", "");
+  console.log(count + "  " + clicked);
+  if(clicked === false && count < 9){
+    text = prompt("Please enter label：", "");
+  }
+  else clicked = false;
+  
+  if (clicked === false && count >= 9) {
+    alert("The number of labels has reached the maximum, please remove one of the tags first.");
+    text = null;
+    clicked = false;
   }
 
   if(text !== null) {
@@ -60,6 +68,7 @@ document.onclick = function(e) { // shows click coordinates
     bookmark.style.background = rgb;
     bookmark.title = text;
     box.append(bookmark);
+    count++;
   
     coords_map.set(coord, bookmark.id);
   
@@ -71,6 +80,7 @@ document.onclick = function(e) { // shows click coordinates
   
     // Assign click function: delete mark and label
     note.onclick = function() {
+      count = count - 1;
       flag = false;
       clicked = true;
       note.parentNode.removeChild(note);
